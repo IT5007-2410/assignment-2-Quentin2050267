@@ -143,6 +143,10 @@ class Delete extends React.Component {
         /*Q5. Fetch the passenger details from the deletion form and call deleteTraveller()*/
         const form = document.forms.deleteTraveller;
         const id = parseInt(form.travellerid.value, 10);
+        if (!this.props.travellers.some(traveller => traveller.id === id)) {
+            alert('Invalid ID');
+            return;
+        }
         this.props.deleteTraveller({
             id: id,
         });
@@ -289,7 +293,7 @@ class TicketToRide extends React.Component {
                     {/*Q4. Code to call the component that adds a traveller.*/}
                     {this.state.selector === 3 && <Add bookTraveller={this.bookTraveller} travellers={this.state.travellers} />}
                     {/*Q5. Code to call the component that deletes a traveller based on a given attribute.*/}
-                    {this.state.selector === 4 && <Delete deleteTraveller={this.deleteTraveller} />}
+                    {this.state.selector === 4 && <Delete deleteTraveller={this.deleteTraveller} travellers={this.state.travellers} />}
                 </div>
             </div>
         );
