@@ -68,14 +68,27 @@ function Display(props) {
 
 
 class Add extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {nextId: this.props.travellers.length + 1};
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     /*Q4. Fetch the passenger details from the add form and call bookTraveller()*/
+    const form = document.forms.addTraveller;
+    this.props.bookTraveller({
+      name: form.travellername.value,
+      phone: form.travellerphone.value,
+      bookingTime: new Date(),
+      id: this.state.nextId,
+    });
+    form.travellername.value = '';
+    form.travellerphone.value = '';
+    // form.travellerbookingtime.value = '';
+    // form.travellerid.value = '';
+    this.setState({ nextId: this.state.nextId + 1 });
   }
 
   render() {
@@ -83,6 +96,9 @@ class Add extends React.Component {
       <form name="addTraveller" onSubmit={this.handleSubmit}>
         {/*Q4. Placeholder to enter passenger details. Below code is just an example.*/}
         <input type="text" name="travellername" placeholder="Name" />
+        <input type="text" name="travellerphone" placeholder="Phone" />
+        {/* <input type="text" name="travellerbookingtime" placeholder="Booking Time" /> */}
+        {/* <input type="text" name="travellerid" placeholder="ID" /> */}
         <button>Add</button>
       </form>
     );
@@ -138,7 +154,6 @@ class Homepage extends React.Component {
     return (
       <div>
         {/*Q2. Placeholder for Homepage code that shows free seats visually.*/}
-        <h2>Homepage</h2>
         <DisplayFreeSeats totalSeats={10} travellers={initialTravellers} />
       </div>);
   }
@@ -167,6 +182,7 @@ class TicketToRide extends React.Component {
 
   bookTraveller(passenger) {
     /*Q4. Write code to add a passenger to the traveller state variable.*/
+    this.setState({ travellers: this.state.travellers.concat(passenger) });
   }
 
   deleteTraveller(passenger) {
@@ -193,7 +209,7 @@ class TicketToRide extends React.Component {
           {this.state.selector === 2 && <Display travellers={this.state.travellers} />}
 
           {/*Q4. Code to call the component that adds a traveller.*/}
-          {this.state.selector === 3 && <Add />}
+          {this.state.selector === 3 && <Add bookTraveller={this.bookTraveller} travellers={this.state.travellers}/>}
           {/*Q5. Code to call the component that deletes a traveller based on a given attribute.*/}
           {this.state.selector === 4 && <Delete />}
         </div>
