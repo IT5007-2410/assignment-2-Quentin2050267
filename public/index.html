@@ -11,8 +11,176 @@
   <script src="https://unpkg.com/@babel/polyfill@7/dist/polyfill.min.js"></script>
 
   <style>
-    table.bordered-table th, td {border: 1px solid silver; padding: 4px;}
-    table.bordered-table {border-collapse: collapse;}
+    .title {
+      font-size: 36px;
+      font-weight: bold;
+      /* text-align: center; */
+      margin: 20px 0;
+      color: #333;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    table.bordered-table {
+      border-collapse: collapse;
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    table.bordered-table th,
+    table.bordered-table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+    }
+
+    table.bordered-table th {
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    table.bordered-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    table.bordered-table tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    table button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    table button:hover {
+      background-color: #0056b3;
+    }
+
+    .mainContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50vh;
+
+    }
+
+    .seatingChart {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      width: 150px;
+      margin: auto;
+    }
+
+    .seat {
+    width: 50px;
+    height: 50px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* font-weight: bold; */
+    /* color: white; */
+    /* cursor: pointer; */
+}
+.free-seats-header {
+    text-align: center;
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+    .freeSeat {
+      background-color: green;
+    }
+
+    .reservedSeat {
+      background-color: grey;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 200px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    .form input {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .form button {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form button:hover {
+      background-color: #0056b3;
+    }
+
+    .navbar {
+      padding: 10px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .navbar button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100px;
+    }
+
+    .navbar button:hover {
+      background-color: #0056b3;
+    }
+
+
+    /* Table header styles */
+    .table-header {
+      display: flex;
+      width: 100%;
+    }
+
+    .table-header span {
+      width: 20px;
+      color: #777777;
+    }
+
+    .table-header .col {
+      width: 50px;
+      text-align: center;
+      margin-left: 10px;
+    }
+
+    /* Table row styles */
+    .table-row {
+      align-items: center; /* 垂直居中 */
+      width: 20px;
+      display: flex;
+      color: #777777;
+    }
   </style>
 </head>
 
